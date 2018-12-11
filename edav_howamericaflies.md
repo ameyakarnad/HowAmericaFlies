@@ -14,7 +14,7 @@ Many times, the only information that is available to us on the travel booking w
 
 Logically, it would make sense for the airlines not to disclose or present this data to the customer who is booking the ticket because they are optimizing on selling the maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
 
-Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance? And if you are planning your holiday, which airline should you avoid?
+Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance? And if you are planning your holiday, which destinations should be avoided for the season ?
 
 ### Team Members:
 
