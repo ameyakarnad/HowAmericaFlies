@@ -1,7 +1,7 @@
 # How America Flies?
 Github Repository for EDAV Project
 
-# Network Spread of 4 Leading Airlines Operating in Continental United States
+## Network Spread of 4 Leading Airlines Operating in Continental United States
 
 ![delta](https://user-images.githubusercontent.com/16842872/49775120-1a039780-fcc5-11e8-8b36-39a7049dc6e6.PNG)
 
