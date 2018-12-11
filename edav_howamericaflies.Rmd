@@ -1,13 +1,15 @@
 ---
-title: "EDAV Project [ Fall 2018 ]: How America Flies ?"
+title: "EDAV Project [Fall 2018]: How America Flies ?"
 author: ""
 date: ""
-output:
-pdf_document: default
+output: 
+github_document: default
 html_document: default
+
 ---
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE,
                       error = FALSE , message = FALSE)
 
@@ -18,12 +20,15 @@ library(gridExtra)
 library(ggmosaic)
 library(statebins)
 data("df_pop_state")
+
 ```
 
 ```{r, echo = FALSE, warning=FALSE}
+
 year_data <- read_csv('data/01_year_data.csv')
 data <- read_csv('data/jan2018.csv')
-december_data <- read_csv('data/02_december_data.csv');
+december_data <- read_csv('data/02_december_data.csv')
+
 ```
 #  1. Introduction
 
@@ -42,6 +47,8 @@ Through our analysis, we would like to present a general overview of flight on-t
 - Aishwarya ( av2845 )
 - Anirudh Bharadwaj ( cb3441 )
 
+Please find our github repository at for the project at: https://github.com/ameyakarnad/howamericaflies
+
 \newpage
 
 # 2. Description of Data
@@ -52,7 +59,9 @@ In this section, we will talk about how the data was collected and preprocessed.
 
 - First, we tried to find data which contained information about international flights. The international air travel on time performance data was not freely available. Hence as a last resort, we had to fall back on air travel data for the United states only, which was freely available.
 
-- The data that we are using for our data analysis and visualisation is taken from United States Department of Transportation's Bureau of Transportation Statistics (BTS) https://transtats.bts.gov/Tables.asp?DB_ID=120&DB_Name=Airline%20On-Time%20Performance%20Data&DB_Short_Name=On-Time. The collected data is sampled from the period of October 2017 to September 2018. We restricted purself to this timescale because the dataset is very large and it gives trouble after loading in R to do quick operatoins. 
+- The data that we are using for our data analysis and visualisation is taken from United States Department of Transportation's Bureau of Transportation Statistics (BTS). 
+  Link : https://catalog.data.gov/dataset/airline-on-time-performance-and-causes-of-flight-delays-on-time-data
+- The collected data is sampled from the period of October 2017 to September 2018. We restricted purself to this timescale because the dataset is very large and it gives trouble after loading in R to do quick operatoins. 
 
 - The data consists of discrete attributes such as Origin and Destination airport, Airline details, Flight number and Cancellation codes to name a few. It also has continuous attributes such as Delay time, distance, taxi and wheels on/ off time. 
 
@@ -127,7 +136,7 @@ state_choropleth(ms_df_tot,legend = "Number of flights", num_colors = 9) +
 Suprisingly, as compared to the number of delayed flights and the number of cancelled flights, New York has lesser number of flights than expected and Georgia has a higher number of flight.
 
 
-## 4.2: Dominance
+## 4.2 Dominance
 
 Domination of an air route or air traffic is an important factor to find out the way america prefers to fly. While some airlines focus their operations primarily onthe major cities in the United states, there are some which specialise in regional routes by serving the tier 2 and tier 3 cities. In this section, we will try to identify the players that dominate the national airline traffic and which others eye for regional domination.
 
@@ -172,7 +181,7 @@ ggplot(grp, aes(x=MKT_UNIQUE_CARRIER,y= Freq ))+
 
 ### Figure 4.2.2: Exploring patterns in Airline Routes ?
 
-```{r, fig.width = 10, fig.height = 8}
+```{r, fig.width = 8, fig.height = 6}
 subnewdata <-newdata[ which(newdata$DEST %in% top9airports), ]
 
 subnewdata$DEST <- factor(subnewdata$DEST,
@@ -396,10 +405,9 @@ ggplot(exp, aes(y = Distance, x = DepDelayMinutes))+
 - We see that there no specific correlation between the distance of a flight and the delay it may suffer.
 - The Worst delay that a medium and short range flight can suffer from ranges between 500 mins - 1000 mins. That is anywhere between 8.5 Hrs to 16 Hrs.
 
-
 ### Figure 4.3.2.1 : Ridgeline Plot ( Time of Delay )
 
-```{r fig.height=8, fig.width=10, warning=FALSE}
+```{r fig.height=8, fig.width=8, warning=FALSE}
 library(tidyverse)
 library(ggridges)
 december <- december_data
@@ -438,7 +446,7 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 
 ### Figure 4.3.2.2 : Ridgeline Plot ( Time of Delay )
 
-```{r fig.height=8, fig.width=10}
+```{r fig.height=8, fig.width=8}
 december$FlightDate <- as.Date(december$FlightDate,"%Y-%m-%d")
 december_new <- december[december$OriginAirportID == 12953,]
 december_new$day <- format(as.Date(december_new$FlightDate,"%Y-%m-%d"),"%d")
@@ -470,8 +478,9 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 
 ### Figure 4.3.2.3 : Ridgeline Plot ( Time of Delay )
 
-```{r, fig.width = 12}
-airline_data = read_csv(file = "data/jan2018.csv", col_names = TRUE)
+```{r, fig.width = 10, echo = FALSE}
+
+airline_data <- data
 
 dep_delay <- airline_data %>%
   select("CRS_DEP_TIME","DEP_DELAY_NEW","DAY_OF_WEEK") %>%
@@ -493,14 +502,16 @@ arr_delay$DAY_OF_WEEK <-  factor(arr_delay$DAY_OF_WEEK)
 arr_delay$DAY_OF_WEEK <- recode(arr_delay$DAY_OF_WEEK,
   "1" = "Monday" ,"2" = "Tuesday","3" = "Wednesday","4" = "Thursday","5" = "Friday",
     "6" = "Saturday","7" = "Sunday")
-d2 <- ggplot(arr_delay, aes(x = as.numeric(CRS_ARR_TIME), y = DAY_OF_WEEK, 
-                      group = DAY_OF_WEEK)) + 
+d2 <- ggplot(arr_delay, aes(x = as.numeric(CRS_ARR_TIME), 
+                            y = DAY_OF_WEEK, 
+                            group = DAY_OF_WEEK)) + 
   geom_density_ridges(fill = "green", alpha = .4) +
   scale_x_continuous(breaks=c(0000,0600,1200,1800, 2400)) +
   labs(x = "24 hour time", y = "Day of the week", 
        title = "Arrival delays during the day with respect to day of the week")  
 
 grid.arrange(d1, d2, nrow = 1)
+
 ```
 
 - The trend in the departure shows that that there are no delays in flights from 0 to 5 AM. This may be because of less frequency of flights scheduled at that moment.
@@ -508,7 +519,7 @@ grid.arrange(d1, d2, nrow = 1)
 - The Arrival delays seem to be at its highesr at around 5 PM to 9 PM, which is logical as the flights that had a delayed departure seem to arrive later than scheduled.
 - There also seems to be small hike in arrival delays during the midnight. This also coloborates our previous logic that flights having a delayed depearture have delayed arrival as well.
 
-### Figure 4.3.3: Choropleth - Deay Minutes per state ( Anirudh )
+### Figure 4.3.3: Choropleth - Delay Minutes per state 
 
 ```{r, fig.width=20,fig.height=10, warning =FALSE}
 # Statewise delays
@@ -545,10 +556,9 @@ state_choropleth(df_del,legend = "Delay Minutes", num_colors = 9) +
   theme(plot.caption = element_text(color = "grey68"))
 
 ```
+The total number of delayed minutes seem to be dramatially concerntrated to New York, California, Texas, Miami and Illinois.
 
-
-
-### Figure 4.3.4.1 : Choropleth - Delay with Seasons [October - December'2017]   ( Akhil Punia )
+### Figure 4.3.4.1 : Choropleth - Delay with Seasons [October - December'2017]   
 
 ```{r}
 dat3 <- year_data
@@ -574,8 +584,11 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
+- Period of October to December is usually the onset of Winters where we also observes two biggest festivals - Thanksgiving and Christmas.
+- Northern and Eastern Coast states are the Worst Hit due to maily extreme weather.
+- Illinois is the home of Chicago O'Hare airport and thus suffers the worst delays due to a misture of factors- high traffic andsevere weather conditions.
 
-### Figure 4.3.4.2: Choropleth - Delay with Seasons [January - March'2018] ( Akhil Punia )
+### Figure 4.3.4.2: Choropleth - Delay with Seasons [January - March'2018] 
 
 ```{r, fig.width=20,fig.height=10}
 dat2 <- dat3 %>% filter(Month %in% c(1,2,3)) %>% group_by(OriginStateName) %>% summarize(value =  mean(DepDelay) ) 
@@ -595,9 +608,11 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
+- In January to March, when Northen United States suffers the brunt extreme winters. We see Washington, Idaho and Oregon beat the trend and rather deliver better performance.
+- We see New York and Illinois reamin the most affected even in this part of the year.
+- North and South Dakota , Michigan nad West Virginia also suffers from extreme delays.
 
-
-### Figure 4.3.4.3: Choropleth - Delay with Seasons [April - June'2017] ( Akhil Punia )
+### Figure 4.3.4.3: Choropleth - Delay with Seasons [April - June'2017]
 
 ```{r, fig.width=20,fig.height=10}
 dat2 <- dat3 %>% filter(Month %in% c(4,5,6)) %>% group_by(OriginStateName) %>% summarize(value =  mean(DepDelay) ) 
@@ -616,9 +631,11 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))
 ```
-### Observations:
 
-### Figure 4.3.4.4: Choropleth - Delay with Seasons [July - August'2017] ( Akhil Punia )
+- April to June is the beginning of summer and we can see the difference as the performance of airports in northern united staes improves with the exception of east cost.
+- Florida is the worst affected state at this time of the year, owing to the fact that it is the prefered holiday destination for the americans. Simply due to the increase in air traffic at thsi time of the year. The average delay takes a hit.
+
+### Figure 4.3.4.4: Choropleth - Delay with Seasons [July - August'2017] 
 
 ```{r, fig.width=20,fig.height=10}
 dat2 <- dat3 %>% filter(Month %in% c(7,8,9)) %>% group_by(OriginStateName) %>% summarize(value =  mean(DepDelay) ) 
@@ -637,9 +654,10 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))
 ```
-### Observations:
 
-### Figure 4.3.5.1 : Bar Chart: Count of Delay/On time/Before Time for [ National ]
+- Patterns at this time of the year seem to be closely mirror the preceeding period as there is still some Sunshine left to enjoy before the onset of winters.
+
+### Figure 4.3.5 : Bar Chart: Count of Delay/On time/Before Time for Continental United States
 
 ```{r, fig.width=20,fig.height=8, warning=FALSE}
 # Plot of Delay
@@ -702,8 +720,9 @@ ch2 <- ggplot(df_dvg2,aes(x=Month,y=count,fill=Status)) + geom_bar(stat = "Ident
 
 grid.arrange(ch1, ch2, nrow = 1)
 ```
-### Observations:
-There is a reductions in the number of flights opereated during winters. The number of delayed flights decrease substantially in the month of october and peak around the summer months suprisingly.
+
+- There is a reductions in the number of flights opereated during winters. 
+- The number of delayed flights decrease substantially in the month of October and peak around the summer months suprisingly.
 
 ## 4.4: Cancellations
 
@@ -735,7 +754,11 @@ ggplot(subset2, aes(x= Origin, fill=CancellationCode))+
   
 ```
 
-### Figure 4.4.2 : Reasons of Flight Cancelllation of Top 3 Airlines at 10 Busiest Airports [ Executive Summary ]
+- American Airlines (AA) suffers lots of cancellations due to carrier realted and weather issue at Charlotte (CLT), Dallas (DFW) and Chicago(ORD) which also happen to be its hub airports.
+- In a contrast to AA, domestic airline Skywest has cancellations at its hub in Chicago but majorly due to weather and not due to its own problem.
+- Another example is Envoy Air, which being a domestic carrier is deprioratised over national carriers when it comes to making decisons on giving space on the runway during extreme conditions. Thus, a majority of their delays come due to airport problems.
+
+### Figure 4.4.2 : Reasons of Flight Cancellation of Top 3 Airlines at 10 Busiest Airports 
 
 ```{r, fig.width=8,fig.height=6}
 
@@ -754,6 +777,11 @@ ggplot(subset4, aes(x=FlightDate, y = count))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+- This graph shows the reasons for all flight cancellations in the United States.
+- As we know, most of the cancellation happen due to weather conditions
+- The national Air system and Carrier are nearly equal responsible for the flight cancellations
+
+
 ### Figure 4.4.3 : Flight cancellations across United Sates in last 5 Decembers
 
 ```{r,fig.width=10,fig.height=6}
@@ -769,6 +797,9 @@ ggplot(decset2, aes(x=DayofMonth, y = count, color= CancellationCode))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+- There were a lot of cancellations in the flight in the year 2013 in early december.
+- 2015 was a bad year as flights were cancelled during the holiday season. 
+- Except in mid december 2017, National air carrier cancellation were always less than weather cancellations. 
 
 ### Figure 4.4.4.1 : Heatmap Cancellations -Origin ( Airports vs. Day of Week )
 
@@ -929,11 +960,11 @@ state_choropleth(can_per_df,legend = "Percentage of Cancellations", num_colors =
 - A similar pattern for the percentage of cancellations occurs when comparing with the ratio of delays. 
 - Florida has a rather higher delay statirstic, but the number of cancellations is pretty low. 
 
-## 5: Distance
+## 4.5. Distance
 
 In this small subsection, we wil look at what distances are covered by the airlines. 
 
-### Figure 5.5.1 : BoxPlot ( Flight Time with Distance Group )
+### Figure 4.5.1 : BoxPlot ( Flight Time with Distance Group )
 
 ```{r fig.height=6, fig.width=6}
 
@@ -962,7 +993,7 @@ The above box plot shows the distribution of flight duration for each of the dis
 - It can be perceived as the kind of route each of those flights take to cover the distance. 
 - It can also be associated with the type of aircraft that is flown. Old models tend to fly with less speed. Let us analyse more on this.
 
-### Figure 5.5.2 : Mosaic Plot - Distance Group vs Airline
+### Figure 4.5.2 : Mosaic Plot - Distance Group vs Airline
 
 ```{r,fig.height=20,fig.width=20}
 # mosaic of distance vs airline
@@ -993,6 +1024,8 @@ ggplot(ms_df) + geom_mosaic(aes(x=product(DistanceGroup,Reporting_Airline)),fill
 
 # 5. Executive Summary
 
+The exhaustive results of our analysis can be broadly summed up by the three graphs below.
+
 ### Figure 5.1 : Reasons of Flight Cancelllation of Top 3 Airlines at 10 Busiest Airports
 
 ```{r, fig.height=4, fig.width=10}
@@ -1011,9 +1044,18 @@ ggplot(subset3, aes(x= Origin, fill=CancellationCode))+
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(axis.ticks.x = element_blank() ,axis.ticks.y = element_blank())
+
 ```
 
+The graph shows the reason for flight cancellation in the top Airports. We have picked up 3 Airlines which showed interesting results.
+
+- The general trend of cancellations in the United States is directly related to the weather conditions. This trend is quite visible in the 3 graphs. The weather-related cancellations are high in Dallas/Ft Worth Airport and Chicago's O'Hare International Airport.
+
+- Another interesting trend is seen in the second graph for PSA Airline. It is seen that the cancellations are high for PSA in Charlotte Douglas International Airport North Carolina. Though this can be attributed to the fact that CTL airport is the main hub for PSA airline, we cannot ignore the fact that many of the cancellations are due to carrier problems and not the weather. We can use this fact to infer that PSA Airline might not be a reliable airline to opt for in case we have a choice.
+
+- Another trend that can be seen is that Skywest Airlines has lots of cancellations due to National Air System (Airport related issues like heavy air traffic, glitches in the air traffic controller room, airport troubles ) compared to other airlines. This may be because Skywest airline caters to the need of tier 2 and other small airports/cities. We believe that cancellations are more frequent for Skywest than others as airports are trying to minimise the cancellations of aircraft flying to larger cities to avoid a cascading effect which may disrupt a lot of future flights schedules. 
 
 ### Figure 5.2 : Flight cancellations at JFK and LGA in last 5 Decembers
 
@@ -1027,13 +1069,21 @@ ggplot(decset3, aes(x=DayofMonth, y = count, color= CancellationCode))+
   facet_wrap(~Year)+
   ggtitle("JFK and LGA are a safe bet this December",
           subtitle = "Flight cancellations at JFK and LGA in last 5 Decembers") +
-  labs(y = "No. of Flights", caption = "Source: bts.transtats.gov") +
+  labs(y = "No. of Flights",x = " Day of the Month", caption = "Source: bts.transtats.gov") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+Continuing with cancellations, let's go more local, and check out the trend in cancellation of flights in New York City, to see what was the reason here. Let us see if it is safe to travel from NYC this Holiday season! We have data from the last five years. 
+
+- It looks like 2013 was a very bad year for a traveller as lots of flights got cancelled in the first half of December. 
+- 2014 was a better year in terms of weather-related cancellations, but from the 8th to 10th of December 2014, there were cancellations because of National Air System (NAS). 
+- In 2015, The cancellations were less frequent, similar to 2014, the first part of December was affected by technical NAS issues, while the holiday season was affected by weather.
+- 2016 was a surprising year. The flight cancellations due to NAS drastically decreased in this period. This is probably because the number of flights operations at JFK were restricted and enforced in the year 2016, which probably decreased the number of flights cancellations due to NAS. 
+Link: https://www.federalregister.gov/documents/2016/06/21/2016-14631/operating-limitations-at-john-f-kennedy-international-airport
+- 2017  was, in general, a good year in terms of flights cancelled due to weather.
 
 ### Figure 5.3 : Bar Chart: Count of Delay/On time/Before Time for [ New York ]
 
@@ -1058,7 +1108,8 @@ ch3 <- ggplot(df_dvg3,aes(x=Month,y=count,fill=Status)) + geom_bar(stat = "Ident
        subtitle = "Outbound Delay per month for New Yok City") +  
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68"))
+  theme(plot.caption = element_text(color = "grey68"))+
+  theme(axis.ticks.x = element_blank() ,axis.ticks.y = element_blank())
 #ggsave("Outbound Delay per month for NYC.png")
 
 # Chart 4 for arriving/inbound flight for JFK
@@ -1084,16 +1135,16 @@ ch4 <- ggplot(df_dvg4,aes(x=Month,y=count,fill=Status)) +
        subtitle = "Inbound Delay per month for New York City") +  
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68"))
+  theme(plot.caption = element_text(color = "grey68"))+
+  theme(axis.ticks.x = element_blank() ,axis.ticks.y = element_blank())
 
 grid.arrange(ch3, ch4, nrow = 1)
 ```
 
-There is a pattern in the number of flights opereated over the months : 
+Cancellations are not the only thing affecting the passengers!Delay is also a stress creator. Let us look at the number of flights delayed for outbound and inbound flights. We can see an obvious pattern in the number of flights operated over the months 
 
-- There is a higher number of flights in summer and lesser number of flights in winter. 
-- Around october time there is a dip in the number of flights. 
-- The number of delayed flights in summer is higher.
+- There is a higher number of flights operating in summer and a lesser number of flights in winter. This shows that people prefer to travel more in the summers and less in the winters. 
+- The two peaks of the data are observed around May and September which coincide with the ending and beginning academic calendars of the college and schools across the US.
 
 \newpage
 
@@ -1158,7 +1209,6 @@ In this section, we will look at the limitations that we faced, as the Future di
 - Colaborations with different members of the team was tough and the team handled it really well
 
 - Initiation of the project was challenging, it was time consuming but we bounced back
-
 
 
 **Future Direction**
