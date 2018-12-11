@@ -8,7 +8,9 @@ We all love to travel and when it comes to deciding the itinerary of our next va
 
 Many times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data analysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India for the winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us cautious while booking the tickets
 
-![delayed](https://user-images.githubusercontent.com/16842872/49788367-299bd400-fcf7-11e8-90b6-8a12581e7ea4.jpg){: .center-image, height="300px", width="150px"}
+<p align="center">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/16842872/49788367-299bd400-fcf7-11e8-90b6-8a12581e7ea4.jpg">
+</p>
 
 Logically, it would make sense for the airlines not to disclose or present this data to the customer who is booking the ticket because they are optimizing on selling the maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
 
