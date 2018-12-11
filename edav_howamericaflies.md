@@ -1,4 +1,4 @@
-EDAV Project \[ Fall 2018 \]: How America Flies ?
+EDAV Project \[Fall 2018\]: How America Flies ?
 ================
 
 1. Introduction
@@ -105,8 +105,8 @@ state_choropleth(ms_df_tot,legend = "Number of flights", num_colors = 9) +
 
 Suprisingly, as compared to the number of delayed flights and the number of cancelled flights, New York has lesser number of flights than expected and Georgia has a higher number of flight.
 
-4.2: Dominance
---------------
+4.2 Dominance
+-------------
 
 Domination of an air route or air traffic is an important factor to find out the way america prefers to fly. While some airlines focus their operations primarily onthe major cities in the United states, there are some which specialise in regional routes by serving the tier 2 and tier 3 cities. In this section, we will try to identify the players that dominate the national airline traffic and which others eye for regional domination.
 
@@ -405,39 +405,6 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 
 ### Figure 4.3.2.3 : Ridgeline Plot ( Time of Delay )
 
-``` r
-airline_data = read_csv(file = "data/jan2018.csv", col_names = TRUE)
-
-dep_delay <- airline_data %>%
-  select("CRS_DEP_TIME","DEP_DELAY_NEW","DAY_OF_WEEK") %>%
-  filter(DEP_DELAY_NEW > 0) 
-dep_delay$DAY_OF_WEEK <-  factor(dep_delay$DAY_OF_WEEK)
-dep_delay$DAY_OF_WEEK <- recode(dep_delay$DAY_OF_WEEK,
-  "1" = "Monday" ,"2" = "Tuesday","3" = "Wednesday","4" = "Thursday","5" = "Friday",
-    "6" = "Saturday","7" = "Sunday")
-d1 <- ggplot(dep_delay, aes(x = as.numeric(CRS_DEP_TIME), y = DAY_OF_WEEK, 
-                      group = DAY_OF_WEEK)) + 
-  geom_density_ridges(fill = "blue", alpha = .4) +
-  scale_x_continuous(breaks=c(0000,0600,1200,1800, 2400)) +
-  labs(x = "24 hour time", y = "Day of the week", 
-  title = "Departure delays during the day with respect to day of the week")  
-arr_delay <- airline_data %>%
-  select("CRS_ARR_TIME","ARR_DELAY_NEW","DAY_OF_WEEK") %>%
-  filter(ARR_DELAY_NEW > 0) 
-arr_delay$DAY_OF_WEEK <-  factor(arr_delay$DAY_OF_WEEK)
-arr_delay$DAY_OF_WEEK <- recode(arr_delay$DAY_OF_WEEK,
-  "1" = "Monday" ,"2" = "Tuesday","3" = "Wednesday","4" = "Thursday","5" = "Friday",
-    "6" = "Saturday","7" = "Sunday")
-d2 <- ggplot(arr_delay, aes(x = as.numeric(CRS_ARR_TIME), y = DAY_OF_WEEK, 
-                      group = DAY_OF_WEEK)) + 
-  geom_density_ridges(fill = "green", alpha = .4) +
-  scale_x_continuous(breaks=c(0000,0600,1200,1800, 2400)) +
-  labs(x = "24 hour time", y = "Day of the week", 
-       title = "Arrival delays during the day with respect to day of the week")  
-
-grid.arrange(d1, d2, nrow = 1)
-```
-
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 -   The trend in the departure shows that that there are no delays in flights from 0 to 5 AM. This may be because of less frequency of flights scheduled at that moment.
@@ -445,7 +412,7 @@ grid.arrange(d1, d2, nrow = 1)
 -   The Arrival delays seem to be at its highesr at around 5 PM to 9 PM, which is logical as the flights that had a delayed departure seem to arrive later than scheduled.
 -   There also seems to be small hike in arrival delays during the midnight. This also coloborates our previous logic that flights having a delayed depearture have delayed arrival as well.
 
-### Figure 4.3.3: Choropleth - Deay Minutes per state ( Anirudh )
+### Figure 4.3.3: Choropleth - Delay Minutes per state
 
 ``` r
 # Statewise delays
@@ -482,9 +449,9 @@ state_choropleth(df_del,legend = "Delay Minutes", num_colors = 9) +
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
-![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-17-1.png) The total number of delayed minutes seem to be dramatially concerntrated to New York, California, Texas, Miami and Illinois.
 
-### Figure 4.3.4.1 : Choropleth - Delay with Seasons \[October - December'2017\] ( Akhil Punia )
+### Figure 4.3.4.1 : Choropleth - Delay with Seasons \[October - December'2017\]
 
 ``` r
 dat3 <- year_data
@@ -512,7 +479,11 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
-### Figure 4.3.4.2: Choropleth - Delay with Seasons \[January - March'2018\] ( Akhil Punia )
+-   Period of October to December is usually the onset of Winters where we also observes two biggest festivals - Thanksgiving and Christmas.
+-   Northern and Eastern Coast states are the Worst Hit due to maily extreme weather.
+-   Illinois is the home of Chicago O'Hare airport and thus suffers the worst delays due to a misture of factors- high traffic andsevere weather conditions.
+
+### Figure 4.3.4.2: Choropleth - Delay with Seasons \[January - March'2018\]
 
 ``` r
 dat2 <- dat3 %>% filter(Month %in% c(1,2,3)) %>% group_by(OriginStateName) %>% summarize(value =  mean(DepDelay) ) 
@@ -534,7 +505,11 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
-### Figure 4.3.4.3: Choropleth - Delay with Seasons \[April - June'2017\] ( Akhil Punia )
+-   In January to March, when Northen United States suffers the brunt extreme winters. We see Washington, Idaho and Oregon beat the trend and rather deliver better performance.
+-   We see New York and Illinois reamin the most affected even in this part of the year.
+-   North and South Dakota , Michigan nad West Virginia also suffers from extreme delays.
+
+### Figure 4.3.4.3: Choropleth - Delay with Seasons \[April - June'2017\]
 
 ``` r
 dat2 <- dat3 %>% filter(Month %in% c(4,5,6)) %>% group_by(OriginStateName) %>% summarize(value =  mean(DepDelay) ) 
@@ -554,9 +529,12 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
-![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-21-1.png) \#\#\# Observations:
+![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
-### Figure 4.3.4.4: Choropleth - Delay with Seasons \[July - August'2017\] ( Akhil Punia )
+-   April to June is the beginning of summer and we can see the difference as the performance of airports in northern united staes improves with the exception of east cost.
+-   Florida is the worst affected state at this time of the year, owing to the fact that it is the prefered holiday destination for the americans. Simply due to the increase in air traffic at thsi time of the year. The average delay takes a hit.
+
+### Figure 4.3.4.4: Choropleth - Delay with Seasons \[July - August'2017\]
 
 ``` r
 dat2 <- dat3 %>% filter(Month %in% c(7,8,9)) %>% group_by(OriginStateName) %>% summarize(value =  mean(DepDelay) ) 
@@ -576,9 +554,11 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
-![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-22-1.png) \#\#\# Observations:
+![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
-### Figure 4.3.5.1 : Bar Chart: Count of Delay/On time/Before Time for \[ National \]
+-   Patterns at this time of the year seem to be closely mirror the preceeding period as there is still some Sunshine left to enjoy before the onset of winters.
+
+### Figure 4.3.5 : Bar Chart: Count of Delay/On time/Before Time for Continental United States
 
 ``` r
 # Plot of Delay
@@ -642,7 +622,10 @@ ch2 <- ggplot(df_dvg2,aes(x=Month,y=count,fill=Status)) + geom_bar(stat = "Ident
 grid.arrange(ch1, ch2, nrow = 1)
 ```
 
-![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-23-1.png) \#\#\# Observations: There is a reductions in the number of flights opereated during winters. The number of delayed flights decrease substantially in the month of october and peak around the summer months suprisingly.
+![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-23-1.png)
+
+-   There is a reductions in the number of flights opereated during winters.
+-   The number of delayed flights decrease substantially in the month of October and peak around the summer months suprisingly.
 
 4.4: Cancellations
 ------------------
@@ -671,7 +654,7 @@ ggplot(subset2, aes(x= Origin, fill=CancellationCode))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
-### Figure 4.4.2 : Reasons of Flight Cancelllation of Top 3 Airlines at 10 Busiest Airports \[ Executive Summary \]
+### Figure 4.4.2 : Reasons of Flight Cancellation of Top 3 Airlines at 10 Busiest Airports
 
 ``` r
 subset4 <- subset1 %>% group_by(FlightDate, CancellationCode) %>% 
@@ -870,12 +853,12 @@ state_choropleth(can_per_df,legend = "Percentage of Cancellations", num_colors =
 -   A similar pattern for the percentage of cancellations occurs when comparing with the ratio of delays.
 -   Florida has a rather higher delay statirstic, but the number of cancellations is pretty low.
 
-5: Distance
------------
+4.5. Distance
+-------------
 
 In this small subsection, we wil look at what distances are covered by the airlines.
 
-### Figure 5.5.1 : BoxPlot ( Flight Time with Distance Group )
+### Figure 4.5.1 : BoxPlot ( Flight Time with Distance Group )
 
 ``` r
 airlines1 <- airlines
@@ -905,7 +888,7 @@ The above box plot shows the distribution of flight duration for each of the dis
 -   It can be perceived as the kind of route each of those flights take to cover the distance.
 -   It can also be associated with the type of aircraft that is flown. Old models tend to fly with less speed. Let us analyse more on this.
 
-### Figure 5.5.2 : Mosaic Plot - Distance Group vs Airline
+### Figure 4.5.2 : Mosaic Plot - Distance Group vs Airline
 
 ``` r
 # mosaic of distance vs airline
@@ -955,7 +938,8 @@ ggplot(subset3, aes(x= Origin, fill=CancellationCode))+
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(axis.ticks.x = element_blank() ,axis.ticks.y = element_blank())
 ```
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-33-1.png)
@@ -1004,7 +988,8 @@ ch3 <- ggplot(df_dvg3,aes(x=Month,y=count,fill=Status)) + geom_bar(stat = "Ident
        subtitle = "Outbound Delay per month for New Yok City") +  
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68"))
+  theme(plot.caption = element_text(color = "grey68"))+
+  theme(axis.ticks.x = element_blank() ,axis.ticks.y = element_blank())
 #ggsave("Outbound Delay per month for NYC.png")
 
 # Chart 4 for arriving/inbound flight for JFK
@@ -1030,7 +1015,8 @@ ch4 <- ggplot(df_dvg4,aes(x=Month,y=count,fill=Status)) +
        subtitle = "Inbound Delay per month for New York City") +  
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
-  theme(plot.caption = element_text(color = "grey68"))
+  theme(plot.caption = element_text(color = "grey68"))+
+  theme(axis.ticks.x = element_blank() ,axis.ticks.y = element_blank())
 
 grid.arrange(ch3, ch4, nrow = 1)
 ```
