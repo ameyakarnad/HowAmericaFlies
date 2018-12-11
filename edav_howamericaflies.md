@@ -8,6 +8,8 @@ We all love to travel and when it comes to deciding the itinerary of our next va
 
 Many times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data analysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India for the winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us cautious while booking the tickets
 
+![delayed](https://user-images.githubusercontent.com/16842872/49788367-299bd400-fcf7-11e8-90b6-8a12581e7ea4.jpg)
+
 Logically, it would make sense for the airlines not to disclose or present this data to the customer who is booking the ticket because they are optimizing on selling the maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
 
 Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance? And if you are planning your holiday, which airline should you avoid?
