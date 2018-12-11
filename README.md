@@ -3,6 +3,12 @@ Github Repository for EDAV Project
 
 # Structure
 
+- Interactive Component : Contains the Html file and the supporting files for the interactive component application "Look Before You Book" 
+- Preprocessing : Contains the Python files used for preprocessing of data
+- Supporting : Contains an airline network visualisation which was not a part of the report
+- Report :https://github.com/ameyakarnad/howamericaflies/blob/master/edav_howamericaflies.md
+
+
 ## Network Spread of 4 Leading Airlines Operating in Continental United States
 
 ![delta](https://user-images.githubusercontent.com/16842872/49775120-1a039780-fcc5-11e8-8b36-39a7049dc6e6.PNG)
