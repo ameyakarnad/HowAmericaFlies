@@ -1,16 +1,16 @@
 EDAV Project \[Fall 2018\]: How America Flies ?
 ================
 
-1. Introduction
-===============
+Part 1. Introduction
+================
 
-We all love to travel and when it comes to deciding the itinerary of our next vacation, a major deciding factor in booking the flight tickets is the budget. When we are constrained on a budget, we choose to go for the cheapest flight or the destination that offers maximum holiday discounts. We also hope that the flight that we choose is dependable and relieable.
+We all love to travel and when it comes to deciding the itinerary of our next vacation, a major deciding factor in booking the flight tickets is the budget. When we are constrained on a budget, we choose to go for the cheapest flight or the destination that offers maximum holiday discounts. We also hope that the flight that we choose is dependable and reliable.
 
-Many a times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data anlaysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India fir the winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us cautious while booking the tickets
+Many times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data analysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India for the winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us cautious while booking the tickets
 
-Logically, it would make sense for the airlines not to disclose or present this data to the customer who is booking the ticket because they are optimized on selling the maximum number of tickets and availability of this information might damage their ticket sales. For a customer on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
+Logically, it would make sense for the airlines not to disclose or present this data to the customer who is booking the ticket because they are optimizing on selling the maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
 
-Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance? And if you are planning your holiday, which airline should you avoid? When is the best time to travel?
+Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance? And if you are planning your holiday, which airline should you avoid?
 
 ### Team Members:
 
@@ -19,7 +19,7 @@ Through our analysis, we would like to present a general overview of flight on-t
 -   Aishwarya ( av2845 )
 -   Anirudh Bharadwaj ( cb3441 )
 
-2. Description of Data
+Part 2. Description of Data
 ======================
 
 Data Collection
@@ -37,12 +37,12 @@ In this section, we will talk about how the data was collected and preprocessed.
 
 -   In the data visualisation part for the interactive component, the dataset was preprocessed and summarised to convert tabublar data into dictionaries. This process will be explained in detailed while explaining the interractive conponent.
 
-3. Analysis of data quality
+Part 3. Analysis of Data Quality
 ===========================
 
-In this section, we will talk about the quality of data that was we used for analyis.
+In this section, we will talk about the quality of data that was we used for our analyis.
 
-The data that we used for the analysis was of good quality as it was maintained by the US Department of Transportation and there was no data corruption or missing values at random. The specific columns which contained the NaN value had been placed there logically.
+The data that we used for the analysis was of good quality since it was mantained by the US Department of Transportation and we were not able to discover any signs data corruption or missing values at random. The specific columns which did contain the NaN values, had them because they been placed there logically.
 
 ``` r
 extracat::visna(year_data)
@@ -50,9 +50,9 @@ extracat::visna(year_data)
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
-Almost all of the data that is missing belongs to the columns related to Delay and Cancellations. This is expected as flights which are cancelled have no delay information, and flights which are delayed or ontime have no cancellation records.
+Almost all of the data that is missing belongs to the columns related to either Delay or Cancellations. This is expected as flights which are cancelled have no delay information, and flights which are delayed or ontime have no cancellation records.
 
-4. Main Analysis - Exploratory Data Analysis
+Part 4. Main Analysis - Exploratory Data Analysis
 ============================================
 
 In this section, we will talk about the exploratory data analysis that was done on this data.
@@ -103,12 +103,12 @@ state_choropleth(ms_df_tot,legend = "Number of flights", num_colors = 9) +
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-Suprisingly, as compared to the number of delayed flights and the number of cancelled flights, New York has lesser number of flights than expected and Georgia has a higher number of flight.
-
+Most of the domestic air traffic in continental United States passes through these 5 states - California, Illinois, Georgia, Florida and Texas. No suprise these states are the home to the largest and the busiest airports.
+ 
 4.2 Dominance
 -------------
 
-Domination of an air route or air traffic is an important factor to find out the way america prefers to fly. While some airlines focus their operations primarily onthe major cities in the United states, there are some which specialise in regional routes by serving the tier 2 and tier 3 cities. In this section, we will try to identify the players that dominate the national airline traffic and which others eye for regional domination.
+Domination of an air route or air traffic is an important factor to find out the way america prefers to fly. While some airlines focus their operations primarily on the major cities in the United states, there are some which specialise in regional routes by serving the tier 2 and tier 3 cities. In this section, we will try to identify the players that dominate the national airline traffic and which others eye for regional domination.
 
 ### Figure 4.2.1: Checking Available Airline Options to choose from at Leading Airports
 
@@ -145,9 +145,8 @@ ggplot(grp, aes(x=MKT_UNIQUE_CARRIER,y= Freq ))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
--   We see that some airlines are the only major option at a specific airport.
--   For ex: In Atlanta most of the flights are operated by Delta, while in Dallas and Seattle, American Airlines is the biggest operatr.
--   In Phoenix, Los Angles and San Francisco there is no single largest airline.
+-   We see that some airlines are the only major option at a specific airport.For ex: In Atlanta most of the flights are operated by Delta, while in Dallas and Seattle, American Airlines is the biggest operator.
+-   In Phoenix, Los Angles and San Francisco there is no single largest airline. More Options to choose from. 
 
 ### Figure 4.2.2: Exploring patterns in Airline Routes ?
 
@@ -200,7 +199,7 @@ ggplot(grp3, aes(x= routes, y= Freq, fill= Airlines ))+
 
 -   United Airlines serves all the routes.
 -   San Franciso - Los Angeles is the busiest Domestic Air Route.
--   There are region spefic airlines like Southwest which serves only in the Southern States and Alaska Airlines which is presesnt only in Seattle - SF route.
+-   There are region specific airlines like Southwest which serves only in the Southern States and Alaska Airlines which is present only in Seattle - SF route.
 
 ### Figure 4.2.3.1: Routes and Unique Routes
 
@@ -208,15 +207,15 @@ ggplot(grp3, aes(x= routes, y= Freq, fill= Airlines ))+
 
 -   The Graph shows that Southwestern Airline is dominating the scene for the total number of flights operated in United States.
 -   It is followed by Delta Airlines, American Airlines, SkyWest Airlines and United Airlines.
--   Note that this data is for the reporting airlines and not marketing airlines.
--   Parts of Skywest Airlines are marketed as American Airlines, Delta Airlines, and others are marketed as United Airlines.
+
+Note: This data is for the reporting airlines and not marketing airlines.Parts of Skywest Airlines are marketed as American Airlines, Delta Airlines, and others are marketed as United Airlines.
 
 ### Figure 4.2.3.2: Routes and Unique Routes
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
--   Despite running less than two thirds of number of operations run by Southwestern Airlines, Skywest Airlines runs on most number of unique routes in the United States.
--   It can be infered that Skywest is runs operations to many cities of United States than any other airlines.
+-  Despite running less than two thirds of number of operations run by Southwestern Airlines, Skywest Airlines runs on most number of unique routes in the United States.
+-  It can be inferred that Skywest is running operations to many cities of the United States than any other airlines.
 
 ### Figure 4.2.4: Cleveland Plot
 
@@ -238,9 +237,9 @@ ggplot(top_from, aes(x = count, y = reorder(Origin, count))) +
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
--   The Top 20 Airports with respect to the number of airports that they are connected to show an interesting picture. Chicago O'Hare International Airport is the most connected airport in the US with flights to 172 different airports. Its followed by Dallas, Atlanta and Denver Airport.
--   It is interesting to know that airports located in the West coast are not that well compared as compared to other airports. The most connected Airport on the west coast is at 10 place (Los Angles Internation Airport- LAX)
--   Another interesting fact is that despite being the Capital of the World, the 2 aiports in New York City are in the 20th and 22nd place in terms of connectivity.
+-   The Top 20 Airports with respect to the number of airports that they are connected to show an interesting picture. Chicago O'Hare International Airport is the most connected airport in the US with flights to 172 different airports. It is followed by Dallas, Atlanta and Denver Airport.
+-   It is interesting to know that airports located in the West coast are not that well connected as compared to other airports. The most connected Airport on the west coast comes at 10th place (Los Angles Internation Airport- LAX)nationally.
+-   Another interesting fact is that despite being the Financial Capital of the World, the 2 aiports serving New York City come at a dismal 20th and 22nd place in terms of connectivity.
 
 ### Figure 4.2.5: Alluvial Plot
 
@@ -308,7 +307,7 @@ ggplot(demo, aes(y = Freq, axis1 = Origin, axis2 = Reporting_Airline, axis3 = De
 4.3 Delay
 ---------
 
-In this subsection we will look at the various attributes that have contributed towards delay. We will also check if there are factors that correlate with delay
+In this subsection we will look at the various attributes that have contribute towards flight delays. We will also check if there are factors that correlate with delay.
 
 ### Figure 4.3.1: Scatter Plot - Delay vs.Distance
 
@@ -364,8 +363,8 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
--   The above plot presents information on the volume of departing flights that get delayed in JFK in the holiday season (last 11 days in the month of december).
--   Major observation from the above graph is that there are delays invariably on all the days between 21st and 31st decemeber.
+-   The above plot presents information on the volume of departing flights that get delayed in JFK in the holiday season (last 11 days in the month of December).
+-   Major observation from the above graph is that there are delays invariably on all the days between 21st and 31st Decemeber.
 -   Most delays occured on 22nd and 23rd of december consistently in all 5 years, while it uniformly drops a little on 25th.
 -   Surprisingly, breaking the trend, the volume of delays in 2017 on the 30th of December has been very high.
 
@@ -401,16 +400,15 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 -   The same pattern seen for JFK is observed here. The large number of delays in these days may be explained by bad weather conditions.
--   Number of Flights delayed during different times of day for 7 days of the week
 
-### Figure 4.3.2.3 : Ridgeline Plot ( Time of Delay )
+### Figure 4.3.2.3 : Number of Flights delayed during different times of day for 7 days of the week
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 -   The trend in the departure shows that that there are no delays in flights from 0 to 5 AM. This may be because of less frequency of flights scheduled at that moment.
--   The departure delays seem to at its highest around 3 PM and 7 PM.
--   The Arrival delays seem to be at its highesr at around 5 PM to 9 PM, which is logical as the flights that had a delayed departure seem to arrive later than scheduled.
--   There also seems to be small hike in arrival delays during the midnight. This also coloborates our previous logic that flights having a delayed depearture have delayed arrival as well.
+-   The departure delays seem to be at its highest around 3 PM and 7 PM.
+-   The Arrival delays seem to be at its highest around 5 PM to 9 PM, which seems logical as the flights that had a delayed departure seem to arrive later than scheduled.
+-   There also seems to be small hike in arrival delays during the midnight. This also corroborates our previous logic that flights having a delayed depearture have delayed arrival as well.
 
 ### Figure 4.3.3: Choropleth - Delay Minutes per state
 
@@ -449,7 +447,9 @@ state_choropleth(df_del,legend = "Delay Minutes", num_colors = 9) +
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
-![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-17-1.png) The total number of delayed minutes seem to be dramatially concerntrated to New York, California, Texas, Miami and Illinois.
+![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-17-1.png) 
+
+The total number of delayed minutes seem to be dramatially concerntrated to New York, California, Texas, Miami and Illinois.
 
 ### Figure 4.3.4.1 : Choropleth - Delay with Seasons \[October - December'2017\]
 
@@ -506,8 +506,8 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 -   In January to March, when Northen United States suffers the brunt extreme winters. We see Washington, Idaho and Oregon beat the trend and rather deliver better performance.
--   We see New York and Illinois reamin the most affected even in this part of the year.
--   North and South Dakota , Michigan nad West Virginia also suffers from extreme delays.
+-   We see New York and Illinois reamin the worst affected even in this part of the year.
+-   North and South Dakota , Michigan and West Virginia also suffers from extreme delays.
 
 ### Figure 4.3.4.3: Choropleth - Delay with Seasons \[April - June'2017\]
 
@@ -531,8 +531,8 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
--   April to June is the beginning of summer and we can see the difference as the performance of airports in northern united staes improves with the exception of east cost.
--   Florida is the worst affected state at this time of the year, owing to the fact that it is the prefered holiday destination for the americans. Simply due to the increase in air traffic at thsi time of the year. The average delay takes a hit.
+-   April to June is the beginning of summer and we can see the difference as the performance of airports in northern United States improves with the exception of East coast.
+-   Florida is the worst affected state at this time of the year, owing to the fact that it is the preferred holiday destination for Americans. Simply due to the increase in air traffic at this time of the year, the average delay takes a hit.
 
 ### Figure 4.3.4.4: Choropleth - Delay with Seasons \[July - August'2017\]
 
@@ -556,7 +556,7 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
--   Patterns at this time of the year seem to be closely mirror the preceeding period as there is still some Sunshine left to enjoy before the onset of winters.
+-   Patterns at this time of the year seem to be closely mirror the preceding period as there is still some Sunshine left to enjoy before the onset of winters.
 
 ### Figure 4.3.5 : Bar Chart: Count of Delay/On time/Before Time for Continental United States
 
@@ -624,7 +624,7 @@ grid.arrange(ch1, ch2, nrow = 1)
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
--   There is a reductions in the number of flights opereated during winters.
+-   There is a reduction in the number of flights opereated during winters.
 -   The number of delayed flights decrease substantially in the month of October and peak around the summer months suprisingly.
 
 4.4: Cancellations
@@ -654,6 +654,10 @@ ggplot(subset2, aes(x= Origin, fill=CancellationCode))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-25-1.png)
 
+-   American Airlines (AA) suffers lots of cancellations due to carrier related and weather issue at Charlotte (CLT), Dallas (DFW) and Chicago(ORD) which also happen to be its hub airports.
+-   In contrast to AA, domestic airline Skywest has cancellations at its hub in Chicago but majorly due to weather and not due to its own problem.
+-   Another example is Envoy Air, which being a domestic carrier is deprioratised over national carriers when it comes to making decisons on giving space on the runway during extreme conditions. Thus, a majority of their delays come due to airport problems.
+
 ### Figure 4.4.2 : Reasons of Flight Cancellation of Top 3 Airlines at 10 Busiest Airports
 
 ``` r
@@ -674,6 +678,10 @@ ggplot(subset4, aes(x=FlightDate, y = count))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-26-1.png)
 
+This graph shows the reasons for all flight cancellations in the United States.
+-   As we know, most of the cancellation happen due to poor weather conditions.
+-   The National Air System and Carrier are nearly equal responsible for the flight cancellations.
+
 ### Figure 4.4.3 : Flight cancellations across United Sates in last 5 Decembers
 
 ``` r
@@ -690,6 +698,10 @@ ggplot(decset2, aes(x=DayofMonth, y = count, color= CancellationCode))+
 ```
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-27-1.png)
+
+-   There were a lot of cancellations in the year 2013 in early December.
+-   2015 was a bad year as lots of flights were cancelled during the holiday season.
+-   Except in mid December 2017, National air carrier cancellation were always less than weather cancellations.
 
 ### Figure 4.4.4.1 : Heatmap Cancellations -Origin ( Airports vs. Day of Week )
 
@@ -752,7 +764,7 @@ It can be seen from the above heatmap that there are over 300-400 departing flig
 
 This map helps travellers to be aware of which days in a week more number of flights are getting cancelled so that it helps them plan their travel accordingly. On all other days, the number of outgoing flights cancelled are pretty less (&lt;100) in all the airports.
 
-### Figure 4.4.5.2 : Heatmap Cancellations - Destination ( Airports vs. Day of Week )
+### Figure 4.4.4.2 : Heatmap Cancellations - Destination ( Airports vs. Day of Week )
 
 ``` r
 # Top 10 destination airports
@@ -804,7 +816,7 @@ It can be seen from the above heatmap that there are over 300-400 arriving fligh
 -   William B Hartsfield-Atlanta Intl on Wednesday
 -   LaGuardia on Thursday
 
-### Figure 4.4.6 : Choropleth: Number of Cancellations per state (both inbound + outbound)
+### Figure 4.4.5 : Choropleth: Number of Cancellations per state (both inbound + outbound)
 
 ``` r
 # Counting the number of cancellations per state for both Inbound and Outbound flights
@@ -886,7 +898,7 @@ The above box plot shows the distribution of flight duration for each of the dis
 -   They match the average duration taken by flights in distance group 5 and 6.
 -   This raises curiosity in the observer as to what might be happening with each of those flights that are outliers.
 -   It can be perceived as the kind of route each of those flights take to cover the distance.
--   It can also be associated with the type of aircraft that is flown. Old models tend to fly with less speed. Let us analyse more on this.
+-   It can also be associated with the type of aircraft that is flown. Old models tend to fly with less speed. 
 
 ### Figure 4.5.2 : Mosaic Plot - Distance Group vs Airline
 
@@ -913,7 +925,7 @@ ggplot(ms_df) + geom_mosaic(aes(x=product(DistanceGroup,Reporting_Airline)),fill
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-32-1.png)
 
--   Some airline such as Hawai Airlines have no middle range flights, but rather services intra-hawai flights and flights to continental USA.
+-   Some airline such as Hawaii Airlines have no middle range flights, but rather services intra-hawaii flights and flights to continental USA.
 -   Some carriers such as UA, WN,YX, EV, MQ, OH etc. have lesser number of flights servicing long distance flights.
 -   OO ( or SkyWest Airlines ) primarily services small distance flights.
 
@@ -978,7 +990,7 @@ ggplot(decset3, aes(x=DayofMonth, y = count, color= CancellationCode))+
 Continuing with cancellations, let's go more local, and check out the trend in cancellation of flights in New York City, to see what was the reason here. Let us see if it is safe to travel from NYC this Holiday season! We have data from the last five years.
 
 -   It looks like 2013 was a very bad year for a traveller as lots of flights got cancelled in the first half of December.
--   2014 was a better year in terms of weather-related cancellations, but from the 8th to 10th of December 2014, there were cancellations because of National Air System (NAS).
+-   2014 was a better year in terms of weather-related cancellations, but from the 8th to 10th of December 2014, there were multiple cancellations because of National Air System (NAS).
 -   In 2015, The cancellations were less frequent, similar to 2014, the first part of December was affected by technical NAS issues, while the holiday season was affected by weather.
 -   2016 was a surprising year. The flight cancellations due to NAS drastically decreased in this period. This is probably because the number of flights operations at JFK were restricted and enforced in the year 2016, which probably decreased the number of flights cancellations due to NAS. Link: <https://www.federalregister.gov/documents/2016/06/21/2016-14631/operating-limitations-at-john-f-kennedy-international-airport>
 -   2017 was, in general, a good year in terms of flights cancelled due to weather.
@@ -1041,12 +1053,12 @@ grid.arrange(ch3, ch4, nrow = 1)
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-35-1.png)
 
-Cancellations are not the only thing affecting the passengers!Delay is also a stress creator. Let us look at the number of flights delayed for outbound and inbound flights. We can see an obvious pattern in the number of flights operated over the months
+Cancellations are not the only thing affecting the passengers! Delay is also a stress creator. Let us look at the number of flights delayed for outbound and inbound flights. We can see an obvious pattern in the number of flights operated over the months
 
 -   There is a higher number of flights operating in summer and a lesser number of flights in winter. This shows that people prefer to travel more in the summers and less in the winters.
 -   The two peaks of the data are observed around May and September which coincide with the ending and beginning academic calendars of the college and schools across the US.
 
-6. Interactive component
+Part 6. Interactive component
 ========================
 
 Link: <https://s3.us-east-2.amazonaws.com/howamericaflies/lookbeforeyoubook.html>
@@ -1086,33 +1098,33 @@ Link: <https://s3.us-east-2.amazonaws.com/howamericaflies/lookbeforeyoubook.html
 -   Create APIs in python and call them in the JavaScript/D3 file. This can help us process the data faster in python and directly connect to US Dept of transportation website and get updated data directly from there.
 -   Create a drop down for year so that that the users of the application could look at delay and airline patterns from different time periods (The US Department of transportation has data from 1989 to present.
 
-7. Conclusion
+Part 7. Conclusion
 =============
 
 In this section, we will look at the limitations that we faced, as the Future direction and vision of the project.
 
 **Limitations**
 
--   As the problem statement that we picked was something that we were interested, the team was really excited to work on the data. In the course of performing the data analysis and preparing the Visualisation tool, we came accross many limitations
+As the problem statement that we picked was something that we were interested, the team was really excited to work on the data. In the course of performing the data analysis and preparing the Visualisation tool, we came accross many limitations
 
--   International On time performance Data - We wanted to actually work on the international data rather than Localised data, but as internation data was hard to get, we had to restrict outselves to United States.
+-   International On-Time performance Data : We wanted to actually work on the international data rather than a localised data, but as international data was hard to get, we had to restrict ourselves to United States.
 
--   Reporting Airline VS Marketing airlines - The data that we were looking for was Marketing airline dataset and not Reporting Airlines. As mentioned in the report above, Skywest Airlines operates as Delta, American and United Airlines. So we could not relate whether The Skywest was operating as Delta, American or United Airlines, which may have created discrepancies in our analysis
+-   Reporting Airline vs. Marketing airlines : The data that we were looking for was Marketing airline dataset and not Reporting Airlines. As mentioned in the report above, Skywest Airlines operates as Delta, American and United Airlines. So we could not relate whether The Skywest was operating as Delta, American or United Airlines, which may have created discrepancies in our analysis
 
 -   We have analysed only direct flights in this project. We will have to search for connecting flight data as well and bring out interesting insights
 
-**Challenges faced and Lessons learned**
+**Challenges faced and Lessons learnt**
 
--   Colaborations with different members of the team was tough and the team handled it really well
+-   Colaborations with different members of the team was tough and the team handled it really well.
 
--   Initiation of the project was challenging, it was time consuming but we bounced back
+-   Initiation of the project was challenging, it was time consuming but we bounced back.
 
 **Future Direction**
 
--   As explained in the interactive component sections, we can add more elements and functionality to interactive to the "Look Before You Book" tool.
+-   As explained in the interactive component section, we can add more elements and functionality to make the "Look Before You Book" tool interactive.
 
--   Expand the functionality for choosing international destinations in the D3 components.
+-   We would want to expand the functionality for choosing international destinations in the D3 components.
 
 -   Data analysis on international delays and cancellations can bring out unique and exciting insights in data.
 
--   Data analysis can be done on the connecting flights. This analysis may require additional data which is currently unavailable
+-   Data analysis can be done on the connecting flights. This analysis may require additional data which is currently not readily available and generally exists behind a paywall.
