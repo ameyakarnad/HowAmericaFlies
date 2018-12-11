@@ -920,6 +920,8 @@ ggplot(ms_df) + geom_mosaic(aes(x=product(DistanceGroup,Reporting_Airline)),fill
 5. Executive Summary
 ====================
 
+The exhaustive results of our analysis can be broadly summed up by the three graphs below.
+
 ### Figure 5.1 : Reasons of Flight Cancelllation of Top 3 Airlines at 10 Busiest Airports
 
 ``` r
@@ -944,6 +946,14 @@ ggplot(subset3, aes(x= Origin, fill=CancellationCode))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-33-1.png)
 
+The graph shows the reason for flight cancellation in the top Airports. We have picked up 3 Airlines which showed interesting results.
+
+-   The general trend of cancellations in the United States is directly related to the weather conditions. This trend is quite visible in the 3 graphs. The weather-related cancellations are high in Dallas/Ft Worth Airport and Chicago's O'Hare International Airport.
+
+-   Another interesting trend is seen in the second graph for PSA Airline. It is seen that the cancellations are high for PSA in Charlotte Douglas International Airport North Carolina. Though this can be attributed to the fact that CTL airport is the main hub for PSA airline, we cannot ignore the fact that many of the cancellations are due to carrier problems and not the weather. We can use this fact to infer that PSA Airline might not be a reliable airline to opt for in case we have a choice.
+
+-   Another trend that can be seen is that Skywest Airlines has lots of cancellations due to National Air System (Airport related issues like heavy air traffic, glitches in the air traffic controller room, airport troubles ) compared to other airlines. This may be because Skywest airline caters to the need of tier 2 and other small airports/cities. We believe that cancellations are more frequent for Skywest than others as airports are trying to minimise the cancellations of aircraft flying to larger cities to avoid a cascading effect which may disrupt a lot of future flights schedules.
+
 ### Figure 5.2 : Flight cancellations at JFK and LGA in last 5 Decembers
 
 ``` r
@@ -956,7 +966,7 @@ ggplot(decset3, aes(x=DayofMonth, y = count, color= CancellationCode))+
   facet_wrap(~Year)+
   ggtitle("JFK and LGA are a safe bet this December",
           subtitle = "Flight cancellations at JFK and LGA in last 5 Decembers") +
-  labs(y = "No. of Flights", caption = "Source: bts.transtats.gov") +
+  labs(y = "No. of Flights",x = " Day of the Month", caption = "Source: bts.transtats.gov") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
   theme(plot.caption = element_text(color = "grey68"))+
@@ -964,6 +974,14 @@ ggplot(decset3, aes(x=DayofMonth, y = count, color= CancellationCode))+
 ```
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-34-1.png)
+
+Continuing with cancellations, let's go more local, and check out the trend in cancellation of flights in New York City, to see what was the reason here. Let us see if it is safe to travel from NYC this Holiday season! We have data from the last five years.
+
+-   It looks like 2013 was a very bad year for a traveller as lots of flights got cancelled in the first half of December.
+-   2014 was a better year in terms of weather-related cancellations, but from the 8th to 10th of December 2014, there were cancellations because of National Air System (NAS).
+-   In 2015, The cancellations were less frequent, similar to 2014, the first part of December was affected by technical NAS issues, while the holiday season was affected by weather.
+-   2016 was a surprising year. The flight cancellations due to NAS drastically decreased in this period. This is probably because the number of flights operations at JFK were restricted and enforced in the year 2016, which probably decreased the number of flights cancellations due to NAS. Link: <https://www.federalregister.gov/documents/2016/06/21/2016-14631/operating-limitations-at-john-f-kennedy-international-airport>
+-   2017 was, in general, a good year in terms of flights cancelled due to weather.
 
 ### Figure 5.3 : Bar Chart: Count of Delay/On time/Before Time for \[ New York \]
 
@@ -1023,11 +1041,10 @@ grid.arrange(ch3, ch4, nrow = 1)
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-35-1.png)
 
-There is a pattern in the number of flights opereated over the months :
+Cancellations are not the only thing affecting the passengers!Delay is also a stress creator. Let us look at the number of flights delayed for outbound and inbound flights. We can see an obvious pattern in the number of flights operated over the months
 
--   There is a higher number of flights in summer and lesser number of flights in winter.
--   Around october time there is a dip in the number of flights.
--   The number of delayed flights in summer is higher.
+-   There is a higher number of flights operating in summer and a lesser number of flights in winter. This shows that people prefer to travel more in the summers and less in the winters.
+-   The two peaks of the data are observed around May and September which coincide with the ending and beginning academic calendars of the college and schools across the US.
 
 6. Interactive component
 ========================
