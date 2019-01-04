@@ -1,27 +1,27 @@
-EDAV Project \[Fall 2018\]: How America Flies ?
+ How America Flies ? - Creating Insightful Visualizations on Airline Performance Data
 ================
 
 Part 1. Introduction
 ================
 
-We all love to travel and when it comes to deciding the itinerary of our next vacation, a major deciding factor in booking the flight tickets is the budget. When we are constrained on a budget, we choose to go for the cheapest flight or the destination that offers maximum holiday discounts. We also hope that the flight that we choose is dependable and reliable.
+We all love to travel and when it comes to deciding the itinerary of our next vacation, a major deciding factor in booking flight tickets is the budget. When we are constrained on a budget, we choose to go for the cheapest flight or the destination that offers maximum holiday discounts. We also hope that the flight that we choose is dependable and reliable.
 
-Many times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data analysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India for the winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us cautious while booking the tickets
+Many times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data analysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India for the 2018 winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us extra cautious while booking the tickets
 
 <p align="center">
   <img width="460" height="300" src="https://user-images.githubusercontent.com/16842872/49788367-299bd400-fcf7-11e8-90b6-8a12581e7ea4.jpg">
 </p>
 
-Logically, it would make sense for the airlines not to disclose or present this data to the customer who is booking the ticket because they are optimizing on selling the maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
+Logically, it would make sense for the airlines not to disclose this data to the customer who is booking the flight ticket because they are looking to sell maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
 
-Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance? And if you are planning your holiday, which destinations should be avoided for the season ?
+Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance?
 
 ### Team Members:
 
--   Akhil Punia ( ap3774 )
--   Ameya Karnad ( ak4251 )
--   Aishwarya ( av2845 )
--   Anirudh Bharadwaj ( cb3441 )
+-   Akhil Punia (ap3774)
+-   Ameya Karnad (ak4251)
+-   Aishwarya (av2845)
+-   Anirudh Bharadwaj (cb3441)
 
 Part 2. Description of Data
 ======================
@@ -31,7 +31,7 @@ Data Collection
 
 In this section, we will talk about how the data was collected and preprocessed.
 
--   First, we tried to find data which contained information about international flights. The international air travel on time performance data was not freely available. Hence as a last resort, we had to fall back on air travel data for the United states only, which was freely available.
+-   First, we tried to find data which contained information about international flights. The international flight on time performance data was not freely available. Hence, we had to fall back on air travel data for the United states only, which was freely available.
 
 -   The data that we are using for our data analysis and visualisation is taken from United States Department of Transportation's Bureau of Transportation Statistics (BTS) <https://transtats.bts.gov/Tables.asp?DB_ID=120&DB_Name=Airline%20On-Time%20Performance%20Data&DB_Short_Name=On-Time>. The collected data is sampled from the period of October 2017 to September 2018. We restricted purself to this timescale because the dataset is very large and it gives trouble after loading in R to do quick operatoins.
 
