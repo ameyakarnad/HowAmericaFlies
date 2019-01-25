@@ -759,12 +759,13 @@ ggplot(cancelled_origin,aes(y=airport,x=DayOfWeek,fill=number_cancelled)) +
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-28-1.png)
 
-It can be seen from the above heatmap that there are over 300-400 departing flights cancelled in 2018 in the following airports. Please note that this represents cumulative cancellations in the whole year on a particular day of the week.
+It can be seen from the above heatmap that there are over 1000 departing flights cancelled in 2018 in the following airports. Please note that this represents cumulative cancellations in the whole year on a particular day of the week.
 
--   George Bush International on Tuesday
+-   William B Hartsfield-Atlanta Intl on Friday
+-   Dallas Fort Worth Airport on Friday
 -   Charlotte/Douglas International on Wednesday
--   William B Hartsfield-Atlanta Intl on Wednesday
--   LaGuardia on Thursday
+
+Also,  Chicago's O'Hare Airport seems to have the most number of cancellation among all the airports. The cancellations are quite high on all days except Saturday. Monday and Tuesday seem to be the worst day to travel
 
 This map helps travellers to be aware of which days in a week more number of flights are getting cancelled so that it helps them plan their travel accordingly. On all other days, the number of outgoing flights cancelled are pretty less (&lt;100) in all the airports.
 
