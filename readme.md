@@ -4,6 +4,8 @@
 Part 1. Introduction
 ================
 
+
+
 We all love to travel and when it comes to deciding the itinerary of our next vacation, a major deciding factor in booking flight tickets is the budget. When we are constrained on a budget, we choose to go for the cheapest flight or the destination that offers maximum holiday discounts. We also hope that the flight that we choose is dependable and reliable.
 
 Many times, the only information that is available to us on the travel booking website is travel time and flight price. But, we have no way to find out whether the flight is reliable or not. The idea of doing Data analysis and visualisation on flight reliability occurred to us when we were booking our flights tickets to India for the 2018 winter break. We noticed that we had no information on the historical flight data indicating delays and flight cancellations, which made us extra cautious while booking the tickets
@@ -12,16 +14,10 @@ Many times, the only information that is available to us on the travel booking w
   <img width="460" height="300" src="https://user-images.githubusercontent.com/16842872/49788367-299bd400-fcf7-11e8-90b6-8a12581e7ea4.jpg">
 </p>
 
-Logically, it would make sense for the airlines not to disclose this data to the customer who is booking the flight ticket because they are looking to sell maximum number of tickets and availability of this information might damage their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
+Logically, it would make sense for the airlines not to disclose this data to the customer who is booking the flight ticket because they are looking to sell maximum number of tickets and availability of this information might effect their ticket sales. For a customer, on the other hand, this information is crucial when he/she is choosing a particular airline and destination city. For example, knowledge of various airline performance may give him/her options to avoid cancellation or delays of his/her flights
 
 Through our analysis, we would like to present a general overview of flight on-time performance in the continental United States and a special focus will be given to show how one can use this analysis to plan their travel this December. We will also try to answer questions such as; What is the right time to travel to avoid getting stuck at airports? Which airlines should be avoided for a particular route because of poor performance?
 
-### Team Members:
-
--   Akhil Punia (ap3774)
--   Ameya Karnad (ak4251)
--   Aishwarya (av2845)
--   Anirudh Bharadwaj (cb3441)
 
 Part 2. Description of Data
 ======================
@@ -31,9 +27,9 @@ Data Collection
 
 In this section, we will talk about how the data was collected and preprocessed.
 
--   First, we tried to find data which contained information about international flights. The international flight on time performance data was not freely available. Hence, we had to fall back on air travel data for the United states only, which was freely available.
+-   First, we tried to find data on international flights. The international flight on time performance data was not open source and not available for free. Hence, we had to fall back on air travel data for the United states only, which was available for free.
 
--   The data that we are using for our data analysis and visualisation is taken from United States Department of Transportation's Bureau of Transportation Statistics (BTS) <https://transtats.bts.gov/Tables.asp?DB_ID=120&DB_Name=Airline%20On-Time%20Performance%20Data&DB_Short_Name=On-Time>. The collected data is sampled from the period of October 2017 to September 2018. We restricted purself to this timescale because the dataset is very large and it gives trouble after loading in R to do quick operatoins.
+-   The data that we are using for our data analysis and visualisation is taken from United States Department of Transportation's Bureau of Transportation Statistics (BTS) <https://transtats.bts.gov/Tables.asp?DB_ID=120&DB_Name=Airline%20On-Time%20Performance%20Data&DB_Short_Name=On-Time>. The collected data is sampled from the period of October 2017 to September 2018. We restricted ourself to this timescale because the entire dataset is very large and we wanted to present analysis for a one year time period.
 
 -   The data consists of discrete attributes such as Origin and Destination airport, Airline details, Flight number and Cancellation codes to name a few. It also has continuous attributes such as Delay time, distance, taxi and wheels on/ off time.
 
@@ -107,12 +103,12 @@ state_choropleth(ms_df_tot,legend = "Number of flights", num_colors = 9) +
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-Most of the domestic air traffic in continental United States passes through these 5 states - California, Illinois, Georgia, Florida and Texas. No suprise these states are the home to the largest and the busiest airports.
+Most of the domestic air traffic in continental United States passes through these 5 states - California, Illinois, Georgia, Florida and Texas. No suprises there as these states are the home to the largest and the busiest airports.
  
 4.2 Dominance
 -------------
 
-Domination of an air route or air traffic is an important factor to find out the way america prefers to fly. While some airlines focus their operations primarily on the major cities in the United states, there are some which specialise in regional routes by serving the tier 2 and tier 3 cities. In this section, we will try to identify the players that dominate the national airline traffic and which others eye for regional domination.
+Domination of an air route or air traffic is an important factor to find out the way America prefers to fly. While some airlines focus their operations primarily on the major cities in the United states, there are some which specialize in regional routes by serving the tier 2 and tier 3 cities. In this section, we will try to identify the players that dominate the national airline traffic and others that look for regional domination.
 
 ### Figure 4.2.1: Checking Available Airline Options to choose from at Leading Airports
 
@@ -190,7 +186,7 @@ names(grp3)[2] <- 'Airlines'
 ggplot(grp3, aes(x= routes, y= Freq, fill= Airlines ))+
   geom_bar(position = "dodge", stat = "identity") +
   ggtitle("What options do I have?",
-          subtitle = "Breakdown of Airlines serving the Top 10 Busiest Domestic Air Routes [ January 2018 ]") +
+          subtitle = "Breakdown of Airlines serving the Top Busiest Domestic Air Routes [ January 2018 ]") +
   labs(x="Top 10 Busiest Routes",y = "Total No. of Flights", caption = "Source: http://www.bts.gov/help/aviation/") +
   theme(plot.title = element_text(face = "bold")) +
   theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
@@ -202,7 +198,7 @@ ggplot(grp3, aes(x= routes, y= Freq, fill= Airlines ))+
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 -   United Airlines serves all the routes.
--   San Franciso - Los Angeles is the busiest Domestic Air Route.
+-   San Francisco - Los Angles is the busiest Domestic Air Route.
 -   There are region specific airlines like Southwest which serves only in the Southern States and Alaska Airlines which is present only in Seattle - SF route.
 
 ### Figure 4.2.3.1: Routes and Unique Routes
@@ -236,13 +232,13 @@ ggplot(top_from, aes(x = count, y = reorder(Origin, count))) +
   theme(axis.ticks.y = element_blank(),plot.title = element_text(size = rel(1.2))) +
   labs(x = "Number of airports connected", y = "Airport",
        title = "Top 20 airports by connectivity to other airports",
-       subtitle = "O'Hare, Dallas Ford, Atlanta, and Denver are the most connected airports")
+       subtitle = "O'Hare, Dallas Fort Worth, Atlanta, and Denver are the most connected airports")
 ```
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 -   The Top 20 Airports with respect to the number of airports that they are connected to show an interesting picture. Chicago O'Hare International Airport is the most connected airport in the US with flights to 172 different airports. It is followed by Dallas, Atlanta and Denver Airport.
--   It is interesting to know that airports located in the West coast are not that well connected as compared to other airports. The most connected Airport on the west coast comes at 10th place (Los Angles Internation Airport- LAX)nationally.
+-   It is interesting to know that airports located in the West coast are not that well connected as compared to other airports. The most connected Airport on the west coast comes at 10th place (Los Angles Internation Airport- LAX) nationally.
 -   Another interesting fact is that despite being the Financial Capital of the World, the 2 aiports serving New York City come at a dismal 20th and 22nd place in terms of connectivity.
 
 ### Figure 4.2.5: Alluvial Plot
@@ -304,7 +300,7 @@ ggplot(demo, aes(y = Freq, axis1 = Origin, axis2 = Reporting_Airline, axis3 = De
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
--   We can see a clear domination of three major airlines - United , Delta and United on the nation's most busiest airports.
+-   We can see a clear domination of three major airlines - United , Delta and American on the nation's most busiest airports.
 -   Skywest Airlines is restricted to the West Coast.
 -   JetBlue only serves specifically on the New York to Los Angeles route.
 
@@ -330,6 +326,7 @@ ggplot(exp, aes(y = Distance, x = DepDelayMinutes))+
 
 -   We see that there no specific correlation between the distance of a flight and the delay it may suffer.
 -   The Worst delay that a medium and short range flight can suffer from ranges between 500 mins - 1000 mins. That is anywhere between 8.5 Hrs to 16 Hrs.
+- There is a huge gap for flight distance between 2600 kms to 5000 kms. This can be attributed to flights to and from Alaska
 
 ### Figure 4.3.2.1 : Ridgeline Plot ( Time of Delay )
 
@@ -369,7 +366,7 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 
 -   The above plot presents information on the volume of departing flights that get delayed in JFK in the holiday season (last 11 days in the month of December).
 -   Major observation from the above graph is that there are delays invariably on all the days between 21st and 31st Decemeber.
--   Most delays occured on 22nd and 23rd of december consistently in all 5 years, while it uniformly drops a little on 25th.
+-   Most delays occured on 22nd and 23rd of december consistently in all 5 years, while it uniformly drops a little on 25th (Possibly because of less flights/ passengers on Christmas.
 -   Surprisingly, breaking the trend, the volume of delays in 2017 on the 30th of December has been very high.
 
 ### Figure 4.3.2.2 : Ridgeline Plot ( Time of Delay )
@@ -403,7 +400,7 @@ ggplot(delayed, aes(x=day,y=Year,group=Year))+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
--   The same pattern seen for JFK is observed here. The large number of delays in these days may be explained by bad weather conditions.
+-   The same pattern seen for JFK is observed here. The large number of delays in these days may be explained by bad weather conditions or high number of passengers.
 
 ### Figure 4.3.2.3 : Number of Flights delayed during different times of day for 7 days of the week
 
@@ -560,7 +557,7 @@ state_choropleth(dat4,legend = "Delay Time Scales")+
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
--   Patterns at this time of the year seem to be closely mirror the preceding period as there is still some Sunshine left to enjoy before the onset of winters.
+-   Patterns at this time of the year seem to be closely mirror the preceding period as there is still some Sunshine left to enjoy before the onset of winter.
 
 ### Figure 4.3.5 : Bar Chart: Count of Delay/On time/Before Time for Continental United States
 
@@ -660,7 +657,7 @@ ggplot(subset2, aes(x= Origin, fill=CancellationCode))+
 
 -   American Airlines (AA) suffers lots of cancellations due to carrier related and weather issue at Charlotte (CLT), Dallas (DFW) and Chicago(ORD) which also happen to be its hub airports.
 -   In contrast to AA, domestic airline Skywest has cancellations at its hub in Chicago but majorly due to weather and not due to its own problem.
--   Another example is Envoy Air, which being a domestic carrier is deprioratised over national carriers when it comes to making decisons on giving space on the runway during extreme conditions. Thus, a majority of their delays come due to airport problems.
+-   Another example is Envoy Air, which being a domestic carrier is deprioritised over national carriers when it comes to making decisons on giving space on the runway during extreme conditions. Thus, a majority of their delays come due to airport problems.
 
 ### Figure 4.4.2 : Reasons of Flight Cancellation of Top 3 Airlines at 10 Busiest Airports
 
@@ -814,12 +811,7 @@ ggplot(cancelled_dest,aes(y=airport,x=DayOfWeek,fill=number_cancelled)) +
 
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-29-1.png)
 
-It can be seen from the above heatmap that there are over 300-400 arriving flights cancelled in 2018 in the following airports. Please note that this represents cumulative cancellations in the whole year on a particular day of the week.
-
--   George Bush Intercontinental on Tuesday
--   Charlotte/Douglas International on Wednesday and Thursday
--   William B Hartsfield-Atlanta Intl on Wednesday
--   LaGuardia on Thursday
+The delay matrix seems to be similar to the previous one, with a lot of cancellations Chicago's O'Hare Airport.
 
 ### Figure 4.4.5 : Choropleth: Number of Cancellations per state (both inbound + outbound)
 
@@ -868,12 +860,12 @@ state_choropleth(can_per_df,legend = "Percentage of Cancellations", num_colors =
 ![](edav_howamericaflies_files/figure-markdown_github/unnamed-chunk-30-1.png)
 
 -   A similar pattern for the percentage of cancellations occurs when comparing with the ratio of delays.
--   Florida has a rather higher delay statirstic, but the number of cancellations is pretty low.
+-   Florida has a rather higher delay statistic, but the number of cancellations is pretty low.
 
 4.5. Distance
 -------------
 
-In this small subsection, we wil look at what distances are covered by the airlines.
+In this short subsection, we will look at what distances are covered.
 
 ### Figure 4.5.1 : BoxPlot ( Flight Time with Distance Group )
 
@@ -932,10 +924,10 @@ ggplot(ms_df) + geom_mosaic(aes(x=product(DistanceGroup,Reporting_Airline)),fill
 
 -   Some airline such as Hawaii Airlines have no middle range flights, but rather services intra-hawaii flights and flights to continental USA.
 -   Some carriers such as UA, WN,YX, EV, MQ, OH etc. have lesser number of flights servicing long distance flights.
--   OO ( or SkyWest Airlines ) primarily services small distance flights.
+-   OO ( SkyWest Airlines ) primarily services small distance flights.
 
-5. Executive Summary
-====================
+Part 5. Executive Summary
+================
 
 The exhaustive results of our analysis can be broadly summed up by the three graphs below.
 
